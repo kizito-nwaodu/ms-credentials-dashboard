@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Microsoft Credentials Update Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #0078d4;
+            color: #fff;
+            padding: 1.5rem 1rem 1rem 1rem;
+            text-align: center;
+        }
+        h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2rem;
+        }
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .section {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            flex: 1 1 320px;
+            min-width: 320px;
+            max-width: 400px;
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+        }
+        .section h2 {
+            margin-top: 0;
+            font-size: 1.25rem;
+            color: #0078d4;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background: #f1f6fa;
+            margin-bottom: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.2em 0.7em;
+            border-radius: 1em;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: auto;
+        }
+        .new { background: #e6f7e6; color: #107c10; }
+        .retired { background: #fde7e9; color: #a4262c; }
+        .soon { background: #fff4ce; color: #986f0b; }
+        @media (max-width: 900px) {
+            .dashboard { flex-direction: column; align-items: center; }
+            .section { max-width: 95vw; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Microsoft Credentials Update Dashboard</h1>
+        <p>Stay up-to-date with the latest changes to Microsoft Certifications and Applied Skills</p>
+    </header>
+    <main class="dashboard">
+        <section class="section">
+            <h2>🟢 New Certifications</h2>
+            <ul>
+                <li>
+                    Azure AI Engineer Associate
+                    <span class="badge new">New</span>
+                </li>
+                <li>
+                    Microsoft Fabric Analytics Engineer
+                    <span class="badge new">New</span>
+                </li>
+            </ul>
+        </section>
+        <section class="section">
+            <h2>🔴 Retired Certifications</h2>
+            <ul>
+                <li>
+                    Azure Data Engineer Associate (DP-203)
+                    <span class="badge retired">Retired</span>
+                </li>
+                <li>
+                    Information Protection & Compliance Admin (SC-400)
+                    <span class="badge retired">Retiring May 31, 2025</span>
+                </li>
+            </ul>
+        </section>
+        <section class="section">
+            <h2>🔵 New Applied Skills</h2>
+            <ul>
+                <li>
+                    Azure AI Language – Build NLP solutions
+                    <span class="badge new">New</span>
+                </li>
+                <li>
+                    Azure Monitor – Deploy and configure
+                    <span class="badge new">New</span>
+                </li>
+                <li>
+                    ASP.NET Core – Develop web apps consuming APIs
+                    <span class="badge new">New</span>
+                </li>
+                <li>
+                    Microsoft Defender for Cloud – Regulatory compliance controls
+                    <span class="badge new">New</span>
+                </li>
+            </ul>
+        </section>
+        <section class="section">
+            <h2>🟠 Retired Applied Skills</h2>
+            <ul>
+                <li>
+                    .NET Aspire distributed apps
+                    <span class="badge retired">Retired</span>
+                </li>
+                <li>
+                    Microsoft Sentinel SIEM operations
+                    <span class="badge retired">Retired</span>
+                </li>
+                <li>
+                    Linux VM deployment on Azure
+                    <span class="badge retired">Retired</span>
+                </li>
+            </ul>
+        </section>
+        <section class="section">
+            <h2>🟣 Coming Soon</h2>
+            <ul>
+                <li>
+                    Microsoft Fabric – Real-time analytics, data science, lakehouse
+                    <span class="badge soon">Coming Soon</span>
+                </li>
+                <li>
+                    Microsoft Purview – Info protection & DLP
+                    <span class="badge soon">Coming Soon</span>
+                </li>
+                <li>
+                    Copilot for Microsoft 365 – Security & compliance readiness
+                    <span class="badge soon">Coming Soon</span>
+                </li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
