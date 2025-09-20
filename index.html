@@ -1,176 +1,189 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Microsoft Credentials Update Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f7f9fa;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #0078d4;
-            color: #fff;
-            padding: 1.5rem 1rem 1rem 1rem;
-            text-align: center;
-        }
-        h1 {
-            margin: 0 0 0.5rem 0;
-            font-size: 2rem;
-        }
-        .dashboard {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            padding: 2rem 1rem;
-            max-width: 1200px;
-            margin: auto;
-        }
-        .section {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            flex: 1 1 320px;
-            min-width: 320px;
-            max-width: 400px;
-            padding: 1.5rem 1rem;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 2rem;
-        }
-        .section h2 {
-            margin-top: 0;
-            font-size: 1.25rem;
-            color: #0078d4;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        li {
-            background: #f1f6fa;
-            margin-bottom: 0.5rem;
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .badge {
-            display: inline-block;
-            padding: 0.2em 0.7em;
-            border-radius: 1em;
-            font-size: 0.85em;
-            font-weight: 600;
-            margin-left: auto;
-        }
-        .new { background: #e6f7e6; color: #107c10; }
-        .retired { background: #fde7e9; color: #a4262c; }
-        .soon { background: #fff4ce; color: #986f0b; }
-        @media (max-width: 900px) {
-            .dashboard { flex-direction: column; align-items: center; }
-            .section { max-width: 95vw; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Microsoft Applied Skills Dashboard with Retired Credentials</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 10px 20px;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+    h1, h2 {
+      color: #0078d4;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #status, #retired-status {
+      text-align: center;
+      margin-bottom: 20px;
+      font-style: italic;
+      color: #555;
+    }
+    .credentials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+    .credential-card {
+      background-color: white;
+      border-radius: 5px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 150px;
+    }
+    .credential-title {
+      font-weight: bold;
+      color: #0078d4;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+    .credential-summary {
+      flex-grow: 1;
+      font-size: 0.9rem;
+      color: #444;
+    }
+    .credential-link {
+      margin-top: 10px;
+      text-decoration: none;
+      background-color: #0078d4;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-weight: 600;
+      align-self: flex-start;
+    }
+    .credential-link:hover {
+      background-color: #005a9e;
+    }
+    .retired-tag {
+      background-color: #d9534f;
+      color: white;
+      font-weight: bold;
+      font-size: 0.8rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 5px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Microsoft Credentials Update Dashboard</h1>
-        <p>Stay up-to-date with the latest changes to Microsoft Certifications and Applied Skills</p>
-    </header>
-    <main class="dashboard">
-        <section class="section">
-            <h2>🟢 New Certifications</h2>
-            <ul>
-                <li>
-                    Azure AI Engineer Associate
-                    <span class="badge new">New</span>
-                </li>
-                <li>
-                    Microsoft Fabric Analytics Engineer
-                    <span class="badge new">New</span>
-                </li>
-            </ul>
-        </section>
-        <section class="section">
-            <h2>🔴 Retired Certifications</h2>
-            <ul>
-                <li>
-                    Azure Data Engineer Associate (DP-203)
-                    <span class="badge retired">Retired</span>
-                </li>
-                <li>
-                    Information Protection & Compliance Admin (SC-400)
-                    <span class="badge retired">Retiring May 31, 2025</span>
-                </li>
-            </ul>
-        </section>
-        <section class="section">
-            <h2>🔵 New Applied Skills</h2>
-            <ul>
-                <li>
-                    Azure AI Language – Build NLP solutions
-                    <span class="badge new">New</span>
-                </li>
-                <li>
-                    Azure Monitor – Deploy and configure
-                    <span class="badge new">New</span>
-                </li>
-                <li>
-                    ASP.NET Core – Develop web apps consuming APIs
-                    <span class="badge new">New</span>
-                </li>
-                <li>
-                    Microsoft Defender for Cloud – Regulatory compliance controls
-                    <span class="badge new">New</span>
-                </li>
-            </ul>
-        </section>
-        <section class="section">
-            <h2>🟠 Retired Applied Skills</h2>
-            <ul>
-                <li>
-                    .NET Aspire distributed apps
-                    <span class="badge retired">Retired</span>
-                </li>
-                <li>
-                    Microsoft Sentinel SIEM operations
-                    <span class="badge retired">Retired</span>
-                </li>
-                <li>
-                    Linux VM deployment on Azure
-                    <span class="badge retired">Retired</span>
-                </li>
-            </ul>
-        </section>
-        <section class="section">
-            <h2>🟣 Coming Soon</h2>
-            <ul>
-                <li>
-                    Microsoft Fabric – Real-time analytics, data science, lakehouse
-                    <span class="badge soon">Coming Soon</span>
-                </li>
-                <li>
-                    Microsoft Purview – Info protection & DLP
-                    <span class="badge soon">Coming Soon</span>
-                </li>
-                <li>
-                    Copilot for Microsoft 365 – Security & compliance readiness
-                    <span class="badge soon">Coming Soon</span>
-                </li>
-            </ul>
-        </section>
-    </main>
+
+<h1>Microsoft Applied Skills Credentials Dashboard</h1>
+<div id="status">Loading active credentials...</div>
+<div class="credentials-grid" id="credentials-container"></div>
+
+<h2>Retired / Retiring Credentials</h2>
+<div id="retired-status">Loading retired credentials...</div>
+<div class="credentials-grid" id="retired-credentials-container"></div>
+
+<script>
+  const apiUrl = "https://learn.microsoft.com/api/catalog?type=appliedSkills&locale=en-us&$top=20";
+
+  // Example retired/retiring data (typically this needs to come from a separate source)
+  const retiredCredentials = [
+    {
+      title: "Implement AI models with Microsoft Power Platform AI Builder",
+      summary: "Retiring on July 31, 2025. Take this credential before it retires.",
+      url: "https://learn.microsoft.com/en-us/credentials/applied-skills/implement-ai-models-ai-builder",
+      retirementDate: "2025-07-31"
+    },
+    {
+      title: "Create an intelligent document processing solution with Azure AI Document Intelligence",
+      summary: "Retiring on June 20, 2025. Prepare early and earn this credential soon.",
+      url: "https://learn.microsoft.com/en-us/credentials/applied-skills/azure-ai-document-intelligence",
+      retirementDate: "2025-06-20"
+    },
+    {
+      title: "Deploy and administer Linux virtual machines on Microsoft Azure",
+      summary: "Retired on May 15, 2025.",
+      url: "https://learn.microsoft.com/en-us/credentials/applied-skills/linux-virtual-machines-azure",
+      retirementDate: "2025-05-15"
+    }
+  ];
+
+  async function fetchActiveCredentials() {
+    const status = document.getElementById('status');
+    status.textContent = 'Fetching active credentials...';
+
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+      const data = await response.json();
+
+      const credentials = data.value || [];
+      renderCredentials(credentials, 'credentials-container');
+
+      const now = new Date();
+      status.textContent = `Last updated: ${now.toLocaleTimeString()}`;
+    } catch (error) {
+      status.textContent = `Error fetching data: ${error.message}`;
+    }
+  }
+
+  function renderCredentials(credentials, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+
+    if (credentials.length === 0) {
+      container.textContent = 'No credentials found.';
+      return;
+    }
+
+    credentials.forEach(item => {
+      const title = item.title || "No title";
+      const desc = item.description || "No description available.";
+      const url = item.learnMoreUrl || item.url || "#";
+
+      let retirementTag = '';
+      if (containerId === 'retired-credentials-container') {
+        retirementTag = `<span class="retired-tag">Retired</span>`;
+      }
+
+      const card = document.createElement('div');
+      card.className = 'credential-card';
+
+      card.innerHTML = `
+        <div class="credential-title">${title} ${retirementTag}</div>
+        <div class="credential-summary">${desc}</div>
+        <a href="${url}" target="_blank" class="credential-link">Learn More</a>
+      `;
+
+      container.appendChild(card);
+    });
+  }
+
+  function renderRetiredCredentials() {
+    const retiredStatus = document.getElementById('retired-status');
+    retiredStatus.textContent = 'Loading retired credentials...';
+
+    try {
+      renderCredentials(retiredCredentials, 'retired-credentials-container');
+      const now = new Date();
+      retiredStatus.textContent = `Retired credentials last updated: ${now.toLocaleTimeString()}`;
+    } catch (error) {
+      retiredStatus.textContent = `Error loading retired data: ${error.message}`;
+    }
+  }
+
+  // Initial fetch on page load
+  fetchActiveCredentials();
+  renderRetiredCredentials();
+
+  // Auto-refresh both every 5 minutes (300000 ms)
+  setInterval(() => {
+    fetchActiveCredentials();
+    renderRetiredCredentials();
+  }, 300000);
+</script>
+
 </body>
 </html>
