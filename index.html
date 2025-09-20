@@ -151,6 +151,25 @@
         .update-item a:hover {
             text-decoration: underline;
         }
+        /* Sort dropdown */
+        .sort-container {
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            color: #0078d4;
+            gap: 8px;
+        }
+        .sort-container label {
+            font-weight: bold;
+        }
+        .sort-select {
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -169,9 +188,17 @@
             <h3>Loading updates...</h3>
         </div>
 
-        <!-- Search Bar -->
+        <!-- Sorting and Search -->
+        <div class="sort-container">
+            <label for="sortFilter">Sort By:</label>
+            <select id="sortFilter" class="sort-select" aria-label="Sort applied skills">
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="alphabetical">Alphabetical</option>
+            </select>
+        </div>
         <div class="search-bar">
-            <input type="text" class="search-input" placeholder="Search Applied Skills..." id="searchInput" />
+            <input type="text" class="search-input" placeholder="Search Applied Skills..." id="searchInput" aria-label="Search applied skills" />
         </div>
 
         <!-- Active Credentials Section -->
@@ -193,6 +220,21 @@
     </div>
 
     <script>
+        let allSkills = [];
+
+        // Sort skills helper function
+        function sortSkills(skills, criteria) {
+            const sorted = [...skills];
+            if (criteria === "newest") {
+                sorted.sort((a, b) => new Date(b.last_modified) - new Date(a.last_modified));
+            } else if (criteria === "oldest") {
+                sorted.sort((a, b) => new Date(a.last_modified) - new Date(b.last_modified));
+            } else if (criteria === "alphabetical") {
+                sorted.sort((a, b) => a.title.localeCompare(b.title));
+            }
+            return sorted;
+        }
+
         // Fetch active applied skills from Microsoft Learn Catalog API
         async function fetchAppliedSkills() {
             const apiUrl = "https://learn.microsoft.com/api/catalog/?type=appliedSkills&locale=en-us";
@@ -231,7 +273,6 @@
 
         // Fetch TechCommunity RSS feed using a CORS proxy
         async function fetchTechCommunityRSS() {
-            // Example RSS feed URL for Microsoft Learn blog on TechCommunity (modify as needed)
             const techCommunityRSSUrl = "https://techcommunity.microsoft.com/t5/microsoft-learn-blog/rssb-p/MicrosoftLearnBlog";
             const proxyUrl = "https://api.allorigins.win/get?url=";
             try {
@@ -281,25 +322,26 @@
         }
 
         async function initializeDashboard() {
-            // Set last updated time
             const lastUpdatedElem = document.getElementById("pageUpdateTime");
             lastUpdatedElem.textContent = `Last updated: ${new Date().toLocaleString()}`;
 
-            // Fetch and render active applied skills
-            const skills = await fetchAppliedSkills();
-            renderCards(skills);
+            // Fetch active applied skills once
+            if (allSkills.length === 0) {
+                allSkills = await fetchAppliedSkills();
+            }
 
-            // Filter skills on search input
-            document.getElementById("searchInput").addEventListener("input", (e) => {
-                const query = e.target.value.toLowerCase();
-                const filtered = skills.filter(skill =>
-                    skill.title.toLowerCase().includes(query) ||
-                    (skill.roles && skill.roles.some(role => role.toLowerCase().includes(query)))
-                );
-                renderCards(filtered);
-            });
+            const sortCriteria = document.getElementById("sortFilter").value;
+            const searchQuery = document.getElementById("searchInput").value.toLowerCase();
 
-            // Fetch, parse, and render TechCommunity RSS updates
+            // Filter and sort skills
+            const filtered = allSkills.filter(skill =>
+                skill.title.toLowerCase().includes(searchQuery) ||
+                (skill.roles && skill.roles.some(role => role.toLowerCase().includes(searchQuery))));
+            const sortedSkills = sortSkills(filtered, sortCriteria);
+
+            renderCards(sortedSkills);
+
+            // Fetch and render TechCommunity RSS updates
             const rssContent = await fetchTechCommunityRSS();
             if (rssContent) {
                 const xmlDoc = parseRSS(rssContent);
@@ -310,11 +352,16 @@
             }
         }
 
-        // Initialize
-        initializeDashboard();
+        // Event listeners for filtering and sorting
+        document.getElementById("searchInput").addEventListener("input", initializeDashboard);
+        document.getElementById("sortFilter").addEventListener("change", initializeDashboard);
 
-        // Optional: set up refresh every 6 hours
-        setInterval(initializeDashboard, 6 * 60 * 60 * 1000);
+        // Initialize on page load and refresh every 6 hours
+        initializeDashboard();
+        setInterval(() => {
+            allSkills = []; // clear cache to force fresh fetch
+            initializeDashboard();
+        }, 6 * 60 * 60 * 1000);
     </script>
 </body>
 </html>
