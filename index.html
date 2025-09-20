@@ -127,13 +127,46 @@
             padding-top: 20px;
             border-top: 1px solid #ddd;
         }
+        .updates-feed {
+            background-color: #e8f4fd;
+            border-left: 4px solid #0078d4;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .updates-feed h3 {
+            margin: 0 0 10px 0;
+            color: #0078d4;
+        }
+        .update-item {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: white;
+            border-radius: 4px;
+        }
+        .update-item a {
+            color: #0078d4;
+            text-decoration: none;
+        }
+        .update-item a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>Microsoft Applied Skills Credentials Dashboard</h1>
-            <div class="update-time">Last updated: September 20, 2025</div>
+            <div class="update-time" id="pageUpdateTime">Last updated: --</div>
+        </div>
+
+        <!-- Updates Feed Section -->
+        <div class="section-header">
+            <span>Recent Updates Feed</span>
+            <span class="section-update">Updates from Microsoft TechCommunity RSS</span>
+        </div>
+        <div class="updates-feed" id="updatesFeed">
+            <h3>Loading updates...</h3>
         </div>
 
         <!-- Search Bar -->
@@ -160,6 +193,7 @@
     </div>
 
     <script>
+        // Fetch active applied skills from Microsoft Learn Catalog API
         async function fetchAppliedSkills() {
             const apiUrl = "https://learn.microsoft.com/api/catalog/?type=appliedSkills&locale=en-us";
             try {
@@ -173,6 +207,7 @@
             }
         }
 
+        // Render applied skills cards
         function renderCards(skills) {
             const grid = document.getElementById("credentialsGrid");
             const count = document.getElementById("resultsCount");
@@ -180,7 +215,6 @@
             grid.innerHTML = skills
                 .map((skill) => {
                     const roles = skill.roles && skill.roles.length ? skill.roles.join(" · ") : "N/A";
-                    // summary is HTML, strip tags except preserve plain text
                     const description = skill.summary ? skill.summary.replace(/<\/?[^>]+(>|$)/g, "") : "";
                     return `
                     <div class="credential-card">
@@ -195,22 +229,92 @@
                 .join("");
         }
 
+        // Fetch TechCommunity RSS feed using a CORS proxy
+        async function fetchTechCommunityRSS() {
+            // Example RSS feed URL for Microsoft Learn blog on TechCommunity (modify as needed)
+            const techCommunityRSSUrl = "https://techcommunity.microsoft.com/t5/microsoft-learn-blog/rssb-p/MicrosoftLearnBlog";
+            const proxyUrl = "https://api.allorigins.win/get?url=";
+            try {
+                const response = await fetch(proxyUrl + encodeURIComponent(techCommunityRSSUrl));
+                if (!response.ok) throw new Error(`RSS fetch error: ${response.status}`);
+                const data = await response.json();
+                return data.contents;
+            } catch (error) {
+                console.error("Failed to fetch TechCommunity RSS:", error);
+                return null;
+            }
+        }
+
+        // Parse RSS XML text to DOM
+        function parseRSS(rssText) {
+            const parser = new DOMParser();
+            return parser.parseFromString(rssText, "application/xml");
+        }
+
+        // Extract feed items from RSS DOM
+        function extractFeedItems(xmlDoc) {
+            const items = xmlDoc.getElementsByTagName("item");
+            const feedItems = [];
+            for (let i = 0; i < items.length && i < 10; i++) { // limit to 10 items
+                const title = items[i].getElementsByTagName("title")[0]?.textContent || "";
+                const link = items[i].getElementsByTagName("link")[0]?.textContent || "#";
+                const pubDate = items[i].getElementsByTagName("pubDate")[0]?.textContent || "";
+                feedItems.push({ title, link, pubDate });
+            }
+            return feedItems;
+        }
+
+        // Render updates in updates feed section
+        function renderUpdates(feedItems) {
+            const feedContainer = document.getElementById("updatesFeed");
+            if (!feedItems || feedItems.length === 0) {
+                feedContainer.innerHTML = "<h3>No recent updates available.</h3>";
+                return;
+            }
+            feedContainer.innerHTML = feedItems
+                .map(item => `
+                    <div class="update-item">
+                        <a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a>
+                        <div><small>${new Date(item.pubDate).toLocaleString()}</small></div>
+                    </div>
+                `).join("");
+        }
+
         async function initializeDashboard() {
+            // Set last updated time
+            const lastUpdatedElem = document.getElementById("pageUpdateTime");
+            lastUpdatedElem.textContent = `Last updated: ${new Date().toLocaleString()}`;
+
+            // Fetch and render active applied skills
             const skills = await fetchAppliedSkills();
             renderCards(skills);
 
+            // Filter skills on search input
             document.getElementById("searchInput").addEventListener("input", (e) => {
                 const query = e.target.value.toLowerCase();
-                const filtered = skills.filter(
-                    (skill) =>
-                        skill.title.toLowerCase().includes(query) ||
-                        (skill.roles && skill.roles.some((role) => role.toLowerCase().includes(query)))
+                const filtered = skills.filter(skill =>
+                    skill.title.toLowerCase().includes(query) ||
+                    (skill.roles && skill.roles.some(role => role.toLowerCase().includes(query)))
                 );
                 renderCards(filtered);
             });
+
+            // Fetch, parse, and render TechCommunity RSS updates
+            const rssContent = await fetchTechCommunityRSS();
+            if (rssContent) {
+                const xmlDoc = parseRSS(rssContent);
+                const feedItems = extractFeedItems(xmlDoc);
+                renderUpdates(feedItems);
+            } else {
+                renderUpdates([]);
+            }
         }
 
+        // Initialize
         initializeDashboard();
+
+        // Optional: set up refresh every 6 hours
+        setInterval(initializeDashboard, 6 * 60 * 60 * 1000);
     </script>
 </body>
 </html>
