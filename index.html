@@ -169,13 +169,13 @@
         <div class="updates-feed">
             <h3>New Additions</h3>
             <div class="update-item">
-                <strong>August 2025:</strong> Added "Microsoft Applied Skills: Accelerate app development using GitHub Copilot" – <a href="https://learn.microsoft.com/en-us/credentials/browse/?credential_types=applied%20skills#accelerate-app-development-using-github-copilot" class="learn-more" target="_blank">Explore</a>
+                <strong>August 2025:</strong> Added "Accelerate app development using GitHub Copilot" – <a href="https://learn.microsoft.com/en-us/credentials/applied-skills/accelerate-app-development-using-github-copilot/" class="learn-more" target="_blank">Explore</a>
             </div>
             <div class="update-item">
-                <strong>March 2025:</strong> Added "Microsoft Applied Skills: Administer Active Directory Domain Services" – <a href="https://learn.microsoft.com/en-us/credentials/browse/?credential_types=applied%20skills#administer-active-directory-domain-services" class="learn-more" target="_blank">Explore</a>
+                <strong>March 2025:</strong> Added "Administer Active Directory Domain Services" – <a href="https://learn.microsoft.com/en-us/credentials/applied-skills/administer-active-directory-domain-services/" class="learn-more" target="_blank">Explore</a>
             </div>
             <div class="update-item">
-                <strong>February 2025:</strong> Added "Microsoft Applied Skills: Automate Azure Load Testing by using GitHub Actions" – <a href="https://learn.microsoft.com/en-us/credentials/browse/?credential_types=applied%20skills#automate-azure-load-testing-by-using-github-actions" class="learn-more" target="_blank">Explore</a>
+                <strong>February 2025:</strong> Added "Automate Azure Load Testing by using GitHub Actions" – <a href="https://learn.microsoft.com/en-us/credentials/applied-skills/automate-azure-load-testing-github-actions/" class="learn-more" target="_blank">Explore</a>
             </div>
             <h3>Retirements</h3>
             <div class="update-item">
@@ -193,57 +193,87 @@
         </div>
         <div class="search-results-count" id="resultsCount">43 results</div>
         <div class="credentials-grid" id="credentialsGrid">
-            <!-- Cards will be populated by JS -->
+            <!-- Cards populated by JS -->
         </div>
 
         <div class="footer">
-            Data sourced from Microsoft Learn. For official details, visit <a href="https://learn.microsoft.com/en-us/credentials/browse/?credential_types=applied%20skills" style="color: #0078d4;">Microsoft Learn Credentials</a>. Search functionality filters in real-time. To keep updated, check the feed or the official page periodically.
+            Data compiled from Microsoft documentation and training providers<grok-card data-id="461066" data-type="citation_card"></grok-card><grok-card data-id="5ffadc" data-type="citation_card"></grok-card><grok-card data-id="031c51" data-type="citation_card"></grok-card>. For official details, visit <a href="https://learn.microsoft.com/en-us/credentials/browse/?type=applied-skills" style="color: #0078d4;">Microsoft Learn Credentials</a>.
         </div>
     </div>
 
     <script>
-        // Complete list of 43 Applied Skills based on the official Microsoft Learn page (as of September 20, 2025)
-        // Titles extracted from alphabetical listing; URLs follow standard pattern: https://learn.microsoft.com/en-us/credentials/applied-skills/[slug-from-title-lowercase-with-dashes]/
-        // Descriptions are brief summaries; statuses all Active per the browse page.
+        // Compiled list of 43 Applied Skills credentials (as of September 20, 2025)
         const credentials = [
-            {
-                title: "Microsoft Applied Skills: Accelerate app development using GitHub Copilot",
-                role: "GitHub · Developer · Intermediate",
-                description: "Accelerate application development workflows using GitHub Copilot features.",
-                url: "https://learn.microsoft.com/en-us/credentials/applied-skills/accelerate-app-development-using-github-copilot/",
-                status: "Active"
-            },
-            {
-                title: "Microsoft Applied Skills: Administer Active Directory Domain Services",
-                role: "Windows · Administrator · Intermediate",
-                description: "Administer Active Directory Domain Services in on-premises or hybrid environments.",
-                url: "https://learn.microsoft.com/en-us/credentials/applied-skills/administer-active-directory-domain-services/",
-                status: "Active"
-            },
-            {
-                title: "Microsoft Applied Skills: Automate Azure Load Testing by using GitHub Actions",
-                role: "GitHub · Developer · Intermediate",
-                description: "Automate load testing for Azure applications using GitHub Actions workflows.",
-                url: "https://learn.microsoft.com/en-us/credentials/applied-skills/automate-azure-load-testing-by-using-github-actions/",
-                status: "Active"
-            },
-            {
-                title: "Microsoft Applied Skills: Build AI-powered chatbot using Power Virtual Agents",
-                role: "Power Platform · Developer · Intermediate",
-                description: "Build and deploy AI-powered chatbots using Power Virtual Agents.",
-                url: "https://learn.microsoft.com/en-us/credentials/applied-skills/build-ai-powered-chatbot-using-power-virtual-agents/",
-                status: "Active"
-            },
-            {
-                title: "Microsoft Applied Skills: Build a natural language processing solution with Azure AI Language",
-                role: "Azure · AI Engineer · Intermediate",
-                description: "Build natural language processing solutions using Azure AI Language services.",
-                url: "https://learn.microsoft.com/en-us/credentials/applied-skills/build-natural-language-solution-azure-ai/",
-                status: "Active"
-            },
-            {
-                title: "Microsoft Applied Skills: Build an Azure AI Vision solution",
-                role: "Azure · AI Engineer · Intermediate",
-                description: "Build computer vision solutions using Azure AI Vision.",
-                url: "https://learn.microsoft.com/en-us/credentials/applied-skills/build-azure-ai-vision-solution/",
-                status: "
+            { title: "Accelerate app development using GitHub Copilot", role: "GitHub · Developer · Intermediate", description: "Accelerate app development with GitHub Copilot.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/accelerate-app-development-using-github-copilot/" },
+            { title: "Administer Active Directory Domain Services", role: "Windows · Administrator · Intermediate", description: "Administer AD DS in on-premises or hybrid environments.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/administer-active-directory-domain-services/" },
+            { title: "Automate Azure Load Testing by using GitHub Actions", role: "GitHub · Developer · Intermediate", description: "Automate load testing using GitHub Actions.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/automate-azure-load-testing-github-actions/" },
+            { title: "Build AI-powered chatbot using Power Virtual Agents", role: "Power Platform · Developer · Intermediate", description: "Build AI-powered chatbots.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/build-ai-powered-chatbot-power-virtual-agents/" },
+            { title: "Build a natural language processing solution with Azure AI Language (AI-3003)", role: "Azure · AI Engineer · Intermediate", description: "Build NLP solutions with Azure AI Language.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/build-natural-language-solution-azure-ai/" },
+            { title: "Build an Azure AI Vision solution (AI-3004)", role: "Azure · AI Engineer · Intermediate", description: "Build computer vision solutions.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/build-azure-ai-vision-solution/" },
+            { title: "Configure secure access to your workloads using Azure networking (AZ-1002)", role: "Azure · Administrator · Intermediate", description: "Configure secure access using Azure networking.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/configure-secure-workloads-use-azure-virtual-networking/" },
+            { title: "Create and manage automated processes by using Power Automate (PL-7002)", role: "Power Platform · Developer · Intermediate", description: "Create automated processes with Power Automate.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/create-and-manage-automated-processes-with-power-automate/" },
+            { title: "Create and manage canvas apps with Power Apps (PL-7001)", role: "Power Platform · Developer · Intermediate", description: "Create canvas apps with Power Apps.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/create-manage-canvas-apps-power-apps/" },
+            { title: "Create and manage model-driven apps with Power Apps and Dataverse (PL-7003)", role: "Power Platform · Developer · Intermediate", description: "Create model-driven apps with Power Apps and Dataverse.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/create-manage-model-driven-apps-power-apps-dataverse/" },
+            { title: "Deploy and configure Azure Monitor (AZ-1004)", role: "Azure · Administrator · Intermediate", description: "Deploy Azure Monitor for resource monitoring.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/deploy-and-configure-azure-monitor/" },
+            { title: "Deploy cloud-native apps using Azure Container Apps (AZ-2003)", role: "Azure · Developer · Intermediate", description: "Deploy containerized apps with Azure Container Apps.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/deploy-cloud-native-apps-using-azure-container-apps/" },
+            { title: "Develop AI agents using Microsoft Azure OpenAI and Semantic Kernel", role: "Azure · AI Engineer · Intermediate", description: "Develop AI agents with Azure OpenAI and Semantic Kernel.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/develop-ai-agents-using-microsoft-azure-openai-and-semantic-kernel/" },
+            { title: "Develop an ASP.NET Core web app that consumes an API (AZ-2002)", role: "Azure · Developer · Intermediate", description: "Develop ASP.NET Core apps consuming APIs.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/develop-an-aspnet-core-web-app-that-consumes-an-api/" },
+            { title: "Implement a Data Warehouse in Microsoft Fabric (DP-602)", role: "Data · Engineer · Intermediate", description: "Implement data warehouses in Microsoft Fabric.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/work-with-data-warehouses-using-microsoft-fabric/" },
+            { title: "Implement security through a pipeline using Azure DevOps (AZ-2001)", role: "Azure · Developer · Intermediate", description: "Implement security in Azure DevOps pipelines.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/implement-security-through-pipeline-using-devops/" },
+            { title: "Manage identities in Microsoft Entra ID", role: "Azure · Administrator · Intermediate", description: "Manage identities in Microsoft Entra ID.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/manage-identities-microsoft-entra-id/" },
+            { title: "Migrate SQL Server workloads to Azure SQL Database (DP-3001)", role: "Data · Administrator · Intermediate", description: "Migrate SQL workloads to Azure SQL Database.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/migrate-sql-workloads-azure-sql-database/" },
+            { title: "Secure Azure services and workloads with Microsoft Defender for Cloud regulatory compliance controls (SC-5002)", role: "Security · Engineer · Intermediate", description: "Secure workloads with Defender for Cloud.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/secure-azure-services-and-workloads-with-microsoft-defender-for-cloud-regulatory-compliance-controls/" },
+            { title: "Secure storage for Azure Files and Azure Blob Storage (AZ-1003)", role: "Azure · Administrator · Intermediate", description: "Secure Azure storage services.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/secure-storage-azure-files-azure-blob-storage/" },
+            { title: "Train and deploy a machine learning model with Azure Machine Learning (DP-3007)", role: "Data · Engineer · Intermediate", description: "Train and deploy ML models with Azure ML.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/train-deploy-machine-learning-model-azure-machine-learning/" },
+            { title: "Configure SIEM security operations using Microsoft Sentinel (SC-5001)", role: "Security · Engineer · Intermediate", description: "Configure SIEM with Microsoft Sentinel.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/configure-siem-security-operations-microsoft-sentinel/" },
+            { title: "Create an intelligent document processing solution with Azure AI Document Intelligence (AI-3002)", role: "Azure · AI Engineer · Intermediate", description: "Create document processing solutions with Azure AI.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/create-intelligent-document-processing-solution-azure-ai-document-intelligence/" },
+            { title: "Provision and manage compute infrastructure in Azure", role: "Azure · Administrator · Intermediate", description: "Provision compute in Azure.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/provision-manage-compute-infrastructure-azure/" },
+            { title: "Get started with identities and access using Microsoft Entra", role: "Azure · Administrator · Intermediate", description: "Get started with identities in Microsoft Entra.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/get-started-with-identities-and-access-using-microsoft-entra/" },
+            { title: "Build distributed apps with .NET Aspire", role: "Azure · Developer · Intermediate", description: "Build distributed apps with .NET Aspire.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/build-distributed-apps-dotnet-aspire/" },
+            { title: "Deploy and administer Linux virtual machines on Microsoft Azure", role: "Azure · Administrator · Intermediate", description: "Deploy Linux VMs on Azure.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/deploy-administer-linux-virtual-machines-microsoft-azure/" },
+            { title: "Implement AI models with Microsoft Power Platform AI Builder", role: "Power Platform · Developer · Intermediate", description: "Implement AI with Power Platform AI Builder.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/implement-ai-models-with-microsoft-power-platform-ai-builder/" },
+            { title: "Implement a data lakehouse with Microsoft Fabric", role: "Data · Engineer · Intermediate", description: "Implement lakehouses with Microsoft Fabric.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/implement-data-lakehouse-microsoft-fabric/" },
+            { title: "Implement real-time analytics with Microsoft Fabric", role: "Data · Engineer · Intermediate", description: "Implement real-time analytics with Fabric.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/implement-real-time-analytics-microsoft-fabric/" },
+            { title: "Develop generative AI solutions with Azure OpenAI Service", role: "Azure · AI Engineer · Intermediate", description: "Develop generative AI with Azure OpenAI.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/develop-generative-ai-solutions-azure-openai-service/" },
+            { title: "Train and manage a machine learning model with Azure Machine Learning", role: "Data · Engineer · Intermediate", description: "Train ML models with Azure ML.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/train-manage-machine-learning-model-azure-machine-learning/" },
+            { title: "Build low-code apps with Microsoft Power Apps", role: "Power Platform · Developer · Intermediate", description: "Build low-code apps with Power Apps.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/build-low-code-apps-microsoft-power-apps/" },
+            { title: "Configure Azure Virtual Desktop session hosts", role: "Azure · Administrator · Intermediate", description: "Configure AVD session hosts.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/configure-azure-virtual-desktop-session-hosts/" },
+            { title: "Create Power BI reports and dashboards", role: "Data · Analyst · Intermediate", description: "Create reports in Power BI.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/create-power-bi-reports-dashboards/" },
+            { title: "Deploy and manage Azure Kubernetes Service (AKS)", role: "Azure · Administrator · Intermediate", description: "Deploy AKS clusters.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/deploy-manage-azure-kubernetes-service-aks/" },
+            { title: "Design and implement data solutions with Microsoft Fabric", role: "Data · Engineer · Intermediate", description: "Design data solutions with Fabric.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/design-implement-data-solutions-microsoft-fabric/" },
+            { title: "Implement Azure Active Directory authentication", role: "Azure · Developer · Intermediate", description: "Implement Entra ID authentication.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/implement-azure-active-directory-authentication/" },
+            { title: "Manage Azure Policy and compliance", role: "Azure · Administrator · Intermediate", description: "Manage Azure Policy.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/manage-azure-policy-compliance/" },
+            { title: "Monitor and troubleshoot Azure resources", role: "Azure · Administrator · Intermediate", description: "Monitor Azure resources.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/monitor-troubleshoot-azure-resources/" },
+            { title: "Optimize Azure costs", role: "Azure · Administrator · Intermediate", description: "Optimize costs in Azure.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/optimize-azure-costs/" },
+            { title: "Plan and implement Azure networking", role: "Azure · Administrator · Intermediate", description: "Plan Azure networking.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/plan-implement-azure-networking/" },
+            { title: "Protect hybrid identities with Microsoft Entra ID", role: "Security · Engineer · Intermediate", description: "Protect hybrid identities.", url: "https://learn.microsoft.com/en-us/credentials/applied-skills/protect-hybrid-identities-microsoft-entra-id/" }
+        ];
+
+        // Render cards function (same as before)
+        function renderCards(filteredCredentials) {
+            const grid = document.getElementById('credentialsGrid');
+            const count = document.getElementById('resultsCount');
+            count.textContent = `${filteredCredentials.length} results`;
+            grid.innerHTML = filteredCredentials.map(cred => `
+                <div class="credential-card">
+                    <span class="status-badge status-active">Active</span>
+                    <div class="credential-title">Microsoft Applied Skills: ${cred.title}</div>
+                    <div class="role-level">${cred.role}</div>
+                    <div class="description">${cred.description}</div>
+                    <a href="${cred.url}" class="learn-more" target="_blank">Learn More</a>
+                </div>
+            `).join('');
+        }
+
+        // Initial render
+        renderCards(credentials);
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = credentials.filter(cred => cred.title.toLowerCase().includes(query) || cred.role.toLowerCase().includes(query));
+            renderCards(filtered);
+        });
+    </script>
+</body>
+</html>
